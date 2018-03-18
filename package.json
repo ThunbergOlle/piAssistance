@@ -1,0 +1,23 @@
+{
+  "name": "piassistance",
+  "version": "1.0.0",
+  "description": "piAssistance is an voice recognition for the pi",
+  "main": "asisstance.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "assistance",
+    "home",
+    "voice",
+    "recognition",
+    "raspberry",
+    "pi"
+  ],
+  "author": "Olle Thunberg",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "socket.io": "^2.0.4"
+  }
+}
