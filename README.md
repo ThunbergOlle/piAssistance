@@ -9,11 +9,11 @@ it in any enviroment you want. As always I priorities easy to use installations 
 ---
  ## VoiceAssistance
  The voice assistance is using the normal webkit that's default in the Chrome browser. (Yes, for the voice assistance please use chrome when connecting) The client's page recieves the information and translates it to english, then sends it to the server. If I get a bit more technical here: We use socket.io in order to connect. This is the part of the script that connects to the server: (note: the server must be running for the connection) 
-´´´
+```
 socket.emit('input', {
    final: finalTranscripts
 });
- ´´´
+ ```
  
  ---
 ## :closed_book: The folders 
