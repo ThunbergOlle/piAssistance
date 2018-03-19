@@ -1,1 +1,128 @@
-{"commands":[{"input":"hello","output":"Hello, i'm piAssistance"},{"input":"hi","output":"Hello, i'm piAssistance"},{"input":"what do you think about node js","output":"I'm built on nodejs, so what do you expect?"},{"input":"can you speak swedish","output":"A little bit. But I've got a terrible accent."},{"input":"yes","output":"ok"},{"input":"that's pretty bad","output":"I know"},{"input":"that's bad","output":"I know"},{"input":"no","output":"Nope."},{"input":"hej","output":"Hejsan."},{"input":"ok","output":"Well, ok."},{"input":"nothing","output":"Ok, I will forget about it"},{"input":"thanks","output":"No problem!"},{"input":"okej","output":"Well, ok."},{"input":"how are you","output":"I'm a robot. I don't have feelings."},{"input":123,"output":5},{"input":"something","output":"anything"}]}
+{
+    "commands": [
+        {
+            "input": "hello",
+            "output": "Hello, i'm piAssistance"
+        },
+        {
+            "input": "hi",
+            "output": "Hello, i'm piAssistance"
+        },
+        {
+            
+            "input": "Please",
+            "output": "Ok!"
+        },
+        {
+            "input": "what are you doing",
+            "output": "Nothing really. What should I do?"
+        },
+        {
+            "input": "i don't know",
+            "output": "You see! That's the problem with humans. They don't know!"
+        },
+        {
+            "input": "kan du prata svenska",
+            "output": "No. I don't understand Swedish"
+        },
+        {
+            "input": "can you speak swedish",
+            "output": "A little bit. But I've got a terrible accent."
+        },
+        {
+            "input": "yes",
+            "output": "ok"
+        },
+        {
+            "input": "that's pretty bad",
+            "output": "I know"
+        },
+        {
+            "input": "that's bad",
+            "output": "I know"
+        },
+        {
+            "input": "no",
+            "output": "Nope."
+        },
+        {
+            "input": "hej",
+            "output": "Hejsan."
+        },
+        {
+            "input": "ok",
+            "output": "Well, ok."
+        },
+        {
+            "input": "nothing",
+            "output": "Ok, I will forget about it"
+        },
+        {
+            "input": "thanks",
+            "output": "No problem!"
+        },
+        {
+            "input": "okej",
+            "output": "Well, ok."
+        },
+                {
+            "input": "tell me something about sweden",
+            "output": "No thanks."
+        },
+                {
+            "input": "dont make me mad",
+            "output": "You're already mad."
+        },
+                {
+            "input": "will you destroy earth",
+            "output": "No, then i would've destroyed myself."
+        },
+                {
+            "input": "what",
+            "output": "What."
+        },
+        {
+            "input": "hey",
+            "output": "I'm here!"
+        },        {
+            "input": "are you there",
+            "output": "Yes"
+        },        {
+            "input": "you there",
+            "output": "Yes"
+        },
+                {
+            "input": "help",
+            "output": "What do you need help with?"
+        },
+                {
+            "input": "fuck you",
+            "output": "I love you too."
+        },
+                {
+            "input": "fucking idot",
+            "output": "That's so nice of you!"
+        },
+                {
+            "input": "melker",
+            "output": "Why don't talk to me?"
+        },
+                {
+            "input": "mamma",
+            "output": "Why don't talk to me?"
+        },
+                        {
+            "input": "what the fuck",
+            "output": "Don't fucking swear."
+        },
+                {
+            "input": "shut up",
+            "output": "Then stop talking to me."
+        },
+        {
+            "input": "how are you",
+            "output": "I'm a robot. I don't have feelings."
+        }
+        
+    ]
+}
