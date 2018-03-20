@@ -1,12 +1,18 @@
 //Setting up variables for client.
 var socket = io.connect('http://127.0.0.1:8000');
 var recognition = new webkitSpeechRecognition();  
+var email = false;
 
 //If we get an answer from server.
 socket.on('answer', function(data){
     var answer = data.answer;
     responsiveVoice.speak(answer);
-    
+    email = false;
+});
+
+socket.on('email', function(data){
+    responsiveVoice.speak("Tell me the email you want to send your message to.");
+    email = true;
 });
 
 //Listening for voices or sounds
@@ -27,6 +33,12 @@ function listen() {
             //If this is the complete sentence or word.
             if(event.results[i].isFinal){
                 finalTranscripts += transcript;
+                if(email == true){
+                    socket.emit('emailInput', {
+                        email: finalTranscripts
+                    });
+                    return email = false;
+                }
 
             } else {
                 interimTranscripts += transcript;

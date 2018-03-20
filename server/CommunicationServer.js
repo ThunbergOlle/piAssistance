@@ -69,7 +69,11 @@ client.on('connection', function(socket){ //If we get a connection.
         }
         
         
-        
+        else if(req == "send an email" || req == "email" || req =="can you send an email" || req == "please send an email"){
+            console.log('Client wants to send an email');
+            socket.emit('email');
+            
+        }
         
         else {
             //Checks all the commands 
@@ -90,5 +94,9 @@ client.on('connection', function(socket){ //If we get a connection.
         }
         
 
+    });
+    socket.on('emailInput', function(data){
+        var email = data.email;
+        console.log('Client wants to send an email to ' + email);
     });
 });

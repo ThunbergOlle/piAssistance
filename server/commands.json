@@ -34,12 +34,20 @@
             "output": "ok"
         },
         {
+            "input": "i forgot",
+            "output": "Of course you did."
+        },
+        {
             "input": "that's pretty bad",
             "output": "I know"
         },
         {
             "input": "that's bad",
             "output": "I know"
+        },
+        {
+            "input": "stop",
+            "output": "Well, don't you think I've got a lovely voice my friend?"
         },
         {
             "input": "no",
@@ -70,7 +78,7 @@
             "output": "No thanks."
         },
                 {
-            "input": "dont make me mad",
+            "input": "don't make me mad",
             "output": "You're already mad."
         },
                 {
@@ -119,6 +127,29 @@
             "input": "shut up",
             "output": "Then stop talking to me."
         },
+                        {
+            "input": "nej",
+            "output": "Sadface."
+        },
+                {
+            "input": "come on",
+            "output": "No thanks"
+        },
+                {
+            "input": "tell me a joke",
+            "output": "I'm a robot. I don't know humor. Maybe I should say sorry right now but I can't be sorry."
+        },
+        
+        
+                        {
+            "input": "good",
+            "output": "I hear that too often"
+        },
+                        {
+            "input": "finally",
+            "output": "Yes, finally!"
+        },
+        
         {
             "input": "how are you",
             "output": "I'm a robot. I don't have feelings."
