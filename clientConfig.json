@@ -1,3 +1,5 @@
 {
-    "location": "Osby, Sweden"
+    "location": "Osby, Sweden",
+    "gmailUser": "gmail username",
+    "gmailPassword" : "gmail password"
 }

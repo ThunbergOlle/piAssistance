@@ -1,8 +1,10 @@
 //Setting up variables for client.
 var socket = io.connect('http://127.0.0.1:8000');
-var recognition = new webkitSpeechRecognition();  
+var recognition = new webkitSpeechRecognition();
 var email = false;
-
+var target = false;
+var emailname = ''
+var message = '';
 //If we get an answer from server.
 socket.on('answer', function(data){
     var answer = data.answer;
@@ -11,8 +13,19 @@ socket.on('answer', function(data){
 });
 
 socket.on('email', function(data){
-    responsiveVoice.speak("Tell me the email you want to send your message to.");
+    responsiveVoice.speak("Tell the GMAIL you want to send your message to, please only say name lastname for example and I will add the @gmail.com for you.");
     email = true;
+    message = true;
+});
+
+socket.on('message', function(data){
+  var message = data.message;
+  targetMessage = message;
+  responsiveVoice.speak("Say the message that's going to be sent!");
+});
+
+socket.on('emailSuccess', function(data){
+  responsiveVoice.speak('Email sent to: ' + data.targetEmail);
 });
 
 //Listening for voices or sounds
@@ -37,18 +50,29 @@ function listen() {
                     socket.emit('emailInput', {
                         email: finalTranscripts
                     });
-                    return email = false;
+                    emailname = finalTranscripts
+                    email = false
+                    return {email, emailname}
+                }
+
+                else if(message == true){
+                  console.log(emailname);
+                  socket.emit('message', {
+                    emailName : emailname,
+                    message: finalTranscripts
+                  });
+                  return message = false
                 }
 
             } else {
                 interimTranscripts += transcript;
-                
-                
+
+
             }
         }
         if(finalTranscripts != ''){
         console.log(finalTranscripts);
-        
+
         //Sends the input to the server to check the database.
         socket.emit('input', {
             final: finalTranscripts
@@ -57,7 +81,7 @@ function listen() {
     }
     //If its ending.
     recognition.onend = function(){
-       
+
     }
         //Starting check for voices or sounds.
         recognition.start();

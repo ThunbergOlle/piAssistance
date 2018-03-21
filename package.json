@@ -19,6 +19,8 @@
   "dependencies": {
     "brain.js": "^1.1.2",
     "fs": "0.0.1-security",
+    "gmail-send": "^1.2.13",
+    "remove-whitespace": "^1.1.0",
     "socket.io": "^2.0.4",
     "weather-js": "^2.0.0"
   }
