@@ -2,14 +2,20 @@
 <html>
     <head>
         <title>piAssistanse Remote Connect</title>
-        
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
     </head>
     <body>
         <span id="text"></span>
-        <h2>piAssistanse voice recognition</h2>
-        <p>Testing version 1. Without any front end development. DEV ONLY</p>
       <!---  <button onclick="listen()">Click here for voice command.</button> -->
-        
+      <div class="pure-menu pure-menu-horizontal pure-menu-scrollable" style="text-align: center;">
+        <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home page</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Settings</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Latest Commands</a></li>
+        </ul>
+      </div>
+       <button class="button-success pure-button" style="margin: 10% auto; display: block">Listen</button>
+        <button class="button-error pure-button" style="margin: 10% auto; display: block">Kill me</button>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- Socket.io API -->
         <script src="http:///code.responsivevoice.org/responsivevoice.js"></script><!-- Voice API -->
         <script src="connect.js"></script> <!-- Voice recognition script external -->
@@ -18,6 +24,36 @@
           //Test commands fast.
         listen(); //Runs the voice recognition command when going to the website.
         </script>
+<div>
+
+    <style scoped>
+
+        .button-success,
+        .button-error,
+        .button-warning,
+        .button-secondary {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-success {
+            background: rgb(28, 184, 65); /* this is a green */
+        }
+
+        .button-error {
+            background: rgb(202, 60, 60); /* this is a maroon */
+        }
+
+        .button-warning {
+            background: rgb(223, 117, 20); /* this is an orange */
+        }
+
+        .button-secondary {
+            background: rgb(66, 184, 221); /* this is a light blue */
+        }
+
+    </style>
 
     </body>
 
