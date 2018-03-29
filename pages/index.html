@@ -15,13 +15,18 @@
         </ul>
       </div>
        <button class="button-success pure-button" style="margin: 10% auto; display: block">Listen</button>
-        <button class="button-error pure-button" style="margin: 10% auto; display: block">Kill me</button>
+        <button class="button-error pure-button" style="margin: 10% auto; display: block" onclick="kill()">Kill me</button>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- Socket.io API -->
         <script src="http:///code.responsivevoice.org/responsivevoice.js"></script><!-- Voice API -->
         <script src="connect.js"></script> <!-- Voice recognition script external -->
 
         <script>
-          //Test commands fast.
+          //Exit window if button is pressed!
+          function kill() {
+              console.log('Killing window...');
+              window.close();
+          }
+
         listen(); //Runs the voice recognition command when going to the website.
         </script>
 <div>
