@@ -43,14 +43,25 @@ For the moment. MAC is not supported :(
 
 The first thing that you will have to configure is the clientConfig.json. Inside the json file you will have to configure some settings like for example your email adress & password but also you're location. This information is required for some functions to work. If you don't want to fill in the information then the functions will not work. 
 
+´´´
+{
+    "location": "Osby, Sweden",
+    "gmailUser": "Your gmail username",
+    "gmailPassword" : "Your gmail password"
+}
+´´´
+### Gmail setup
+In order to send emails you may have to configure your gmail settings. You have to allow gmails to be sent from "unsafe" sources. (I will try to fix this later, I don't know what's the problem atm).
+
+### Let's test if the bot works!
 If you want to just test the bot (Please note that it may be slow) run the jsonServer by locating the folder inside a commandprompt and typing "node jsonServer.js"(sudo node jsonServer.js if on Linux). 
 NodeJS must be installed.
 
 After you've run the serverBot please go inside the "pages" folder and open Index.HTML. Right now it should be working. If you've got a problem please read the common-problems section of the page.
 
 ### MongoDB Setup
-If you want a faster response from the server, MongoDB is required. You can read more about MongoDB and what it does [here]: https://www.mongodb.com/
-Basicly MongoDB is a database engine. In order to set it up correctly please follow [these]: https://youtu.be/pWbMrx5rVBE?t=2m28s instructions.
+If you want a faster response from the server, MongoDB is required. You can read more about MongoDB and what it does [here](https://www.mongodb.com/)
+Basicly MongoDB is a database engine. In order to set it up correctly please follow [these](https://youtu.be/pWbMrx5rVBE?t=2m28s) instructions.
 
 Then test the serverBot by opening a commandprompt and typing "node dbServer.js"
 (sudo node dbServer.js if on Linux). 
