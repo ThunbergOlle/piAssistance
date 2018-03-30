@@ -37,15 +37,6 @@ client.on('connection', function(socket){ //If we get a connection.
             });
 
 
-            //Adds something if needed. (STILL UNDER WORKING PROGRESS, WE DON'T RECOMMEND USING IT RN)
-            fs.readFile('commands.json', 'utf8', function readFileCallback(err, data){
-                if (err) throw err;
-                object = JSON.parse(data);
-                object.commands.push({input: "something", output: "anything"});
-                var json = JSON.stringify(object);
-                fs.writeFile('commands.json', json, 'utf8');
-            });
-
 
             //If the client sent a message containing information about the weaher.
         } else if (req == 'weather' || req == "what's the weather" || req == "what's the weather for today" || req == "tell me what todays weather will be") {
@@ -126,10 +117,24 @@ client.on('connection', function(socket){ //If we get a connection.
 
     socket.on('finalCMDAnswer', function(data){
 
+
         //Get the main variables
-        var qst = data.qst;
-        var ans = data.ans;
+        var dataqst = data.qst;
+        var dataans = data.ans;
+
+        var qst = dataqst.trim(); //Removes spaces
+        var ans = dataans.trim(); //Remove spaces
+
+        
         console.log(qst + ans);
+        
+            fs.readFile('commands.json', 'utf8', function readFileCallback(err, data){
+                if (err) throw err;
+                object = JSON.parse(data);
+                object.commands.push({input: qst, output: ans});
+                var json = JSON.stringify(object);
+                fs.writeFile('commands.json', json, 'utf8');
+            });
     });
 
 

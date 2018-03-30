@@ -37,8 +37,7 @@ socket.on('emailSuccess', function(data){
   responsiveVoice.speak('Email sent to: ' + data.targetEmail);
 });
 socket.on('newCMDReq', function(data){
-    newCommand = true;
-    console.log('[DEV TEST]');
+    newCommand = true; //Sets newCommand to true value.
     responsiveVoice.speak('Please tell me the question you want to add to the database');
 });
 socket.on('newCMDAnswer', function(data){
