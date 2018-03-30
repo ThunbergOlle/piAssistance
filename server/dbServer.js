@@ -6,11 +6,13 @@ const fs = require('fs'); //Getting the filesystem
 const removeWhitespace = require('remove-whitespace'); //Getting the remove-whitespace api for sending email and dealing with strings.
 const weather = require('weather-js'); //Getting weather api for checking weather.
 const mongo = require('mongodb').MongoClient;
+const wiki = require('wtf_wikipedia');
+
 //FOR SPECIAL COMMANDS FOR THE BOT
 const clientConfig  = require('../clientConfig.json');
 
 //You can add you own commands to the file (Comming soon!)
-
+var installed = false;
 console.log('Weather node started up.');
 
 console.log('Server for piAssistance voice recognition bot is running...'); //Start of bot.
@@ -28,21 +30,11 @@ client.on('connection', function(socket){ //If we get a connection.
         var trim = edit.trim();
         var req = trim;
         
-
+        req.toString();
         console.log('Client sent message: ' + req); //Logs what message that was sent from the client connected to the server.
-
+        var n = req.includes("what's");
         //Checks if we should add something into the database.
-        if(req == "outdatedsorryxd"){
-            console.log('Adding into json file...');
-            socket.emit('answer', {  
-                question: "quesiton",
-                answer: "Say the question first, then you will hear a sound effect. After that say the answer!"
-            });
-
-
-
-            //If the client sent a message containing information about the weaher.
-        } else if (req == 'weather' || req == "what's the weather" || req == "what's the weather for today" || req == "tell me what todays weather will be") {
+        if (req == 'weather' || req == "what's the weather" || req == "what's the weather for today" || req == "tell me what todays weather will be") {
             console.log('Client asks for weather information');
             var location = clientConfig.location; //Gets the location set int the clientConfig file.
             console.log('Config is set to location: ' + location); //Logs the location that config is set to.
@@ -55,6 +47,32 @@ client.on('connection', function(socket){ //If we get a connection.
                     });
             });
 
+        }
+        
+        else if(n == true){
+            var toWiki = req.replace(/what's|an| a |whats|the|/gi, "");
+            
+            console.log(toWiki);
+            if(toWiki != ""){
+            wiki.from_api(toWiki, 'en', function(markup) {
+            var data = wiki.parse(markup);
+                if(data.sections != undefined){
+                    if(data.sections[0].sentences[0] != undefined){
+                    var getdata = data.sections[0].sentences[0].text;
+                    var response = getdata.replace("( )", "");
+                    console.log(response);
+                            socket.emit('answer', {
+                                answer: response
+                            });
+                    }else {socket.emit('answer', {
+                    answer: "I don't know what " + toWiki + " is."
+                });}
+                } else {socket.emit('answer', {
+                    answer: "I don't know what " + toWiki + " is."
+                });}
+            });
+            }
+            //If the client sent a message containing information about the weaher.
         }
 
         //Checks if res was to send an email.
@@ -158,4 +176,6 @@ client.on('connection', function(socket){ //If we get a connection.
     }
 });
 });
+
+
 
