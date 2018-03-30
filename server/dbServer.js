@@ -2,20 +2,23 @@
 
 
 const client = require('socket.io').listen(8000).sockets; //Requires socket.io and starts listening for open connections
-const command = require('./commands.json'); //Getting the normal commands
 const fs = require('fs'); //Getting the filesystem
 const removeWhitespace = require('remove-whitespace'); //Getting the remove-whitespace api for sending email and dealing with strings.
 const weather = require('weather-js'); //Getting weather api for checking weather.
-
+const mongo = require('mongodb').MongoClient;
 //FOR SPECIAL COMMANDS FOR THE BOT
 const clientConfig  = require('../clientConfig.json');
+
 //You can add you own commands to the file (Comming soon!)
 
 console.log('Weather node started up.');
 
 console.log('Server for piAssistance voice recognition bot is running...'); //Start of bot.
 console.log('Packages were successfully started & running.'); //Start of bot.
+mongo.connect("mongodb://127.0.0.1/piAssistance", function(err, db){
 
+    //Sets up database variables
+    let piDB = db.collection('piAssistance');
 client.on('connection', function(socket){ //If we get a connection.
     console.log('A connection was made to the server.')
     socket.on('input', function(data){ //If we get an input from client
@@ -24,7 +27,7 @@ client.on('connection', function(socket){ //If we get a connection.
         var edit = data.final.toLowerCase();
         var trim = edit.trim();
         var req = trim;
-
+        
 
         console.log('Client sent message: ' + req); //Logs what message that was sent from the client connected to the server.
 
@@ -61,27 +64,24 @@ client.on('connection', function(socket){ //If we get a connection.
             //Do we want some kind of contact list api or just to say the whole gmail adress?
             socket.emit('email');
 
-        } else if(req == "add command" || req == "add"){
+        } else if(req == "add command" || req == "add" || req == "new command"){
             console.log('Client wants to add a new command!');
             socket.emit('newCMDReq');
         }
 
         else {
-            //Checks all the commands
-            for (var i = 0; i < command.commands.length; i++){
-                if(command.commands[i].input == req){
-                    var answerCommand = command.commands[i].output;
-                    console.log('Command found in database.'); //Logs that we found a command in the database.
-                    console.log('Sending response to client:' + command.commands[i].output);
+            //Checks all the commands in database.
+            piDB.findOne({ input: req}, function(err, result){
+                if(err) throw err;
+                if (result != null) {
+                    var answerCommand = result.output;
                     socket.emit('answer', {
                         answer: answerCommand
                     });
-                    //If we cant find it in database.
-                }else if(command.commands[i] == command.commands.length){
-                        console.log('Command not found in database.');
-
+                } else {
+                    console.log('Command not found in database');
                 }
-            }
+            });
         }
 
 
@@ -128,13 +128,9 @@ client.on('connection', function(socket){ //If we get a connection.
         
         console.log(qst + ans);
         
-            fs.readFile('commands.json', 'utf8', function readFileCallback(err, data){
-                if (err) throw err;
-                object = JSON.parse(data);
-                object.commands.push({input: qst, output: ans});
-                var json = JSON.stringify(object);
-                fs.writeFile('commands.json', json, 'utf8');
-            });
+        piDB.insert({input: qst, output: ans}, function(){
+            console.log('Added (Input: '+ qst +' Output: '+ ans + ')');
+        });
     });
 
 
@@ -161,3 +157,5 @@ client.on('connection', function(socket){ //If we get a connection.
       });
     }
 });
+});
+
