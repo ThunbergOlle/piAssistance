@@ -41,14 +41,27 @@ client.on('connection', function(socket){ //If we get a connection.
             weather.find({search: location, degreeType: 'C'}, function(err, result){ //Finding the weather and dealing with the api.
                 if(err) throw err;
               var tmp = result[0].current.temperature; //We recieve the tmp that's currently in the destination.
-              var tmpAnswer = 'The weather in ' + clientConfig.location + ' is currently' + tmp + 'degrees celsius.'; //Logs the final answer from server.
+              var tmpAnswer = 'The weather in ' + clientConfig.location + ' is currently ' + tmp + ' degrees celsius.'; //Logs the final answer from server.
                     socket.emit('answer', {
                         answer: tmpAnswer
                     });
             });
 
         }
-        
+        else if(req == "what's the date" || req == "what date is it" || req == "what's the current date" || req == "date" || req == "whats the date now"){
+            //Check time from clientConfig.json
+            var today = new Date();
+            var dd = today.getDate();
+            var yyyy = today.getFullYear();
+            var mm = today.getMonth()+1; //January is 0!
+            today = 'The current date is: ' + mm + '-' + dd + '-' + yyyy;
+            socket.emit('answer', {
+                answer: today
+            });
+        }
+        else if(req == "what's the time" || req == "what time is it" || req == "what's the current time" || req == "time" || req == "whats the time now" || req =="what's the clock"){
+            
+        }
         else if(n == true){
             var toWiki = req.replace(/what's|an| a |whats|the|/gi, "");
             
